@@ -87,7 +87,11 @@ If t, all buffers visiting files on the classpath might be saved."
   :group 'cider
   :package-version '(cider . "0.21.0"))
 
-(defconst cider-ns-refresh-log-buffer "*cider-ns-refresh-log*")
+(defconst cider-ns-refresh-log-buffer "*cider-ns-refresh-log*"
+  (let ((map (define-prefix-command 'cider-ns-refresh-log-buffer)))
+    (define-key map (kbd "C-c M-n r") #'cider-ns-refresh)
+    (define-key map (kbd "C-c M-n M-r") #'cider-ns-refresh)
+    map)))
 
 (define-obsolete-variable-alias 'cider-refresh-show-log-buffer 'cider-ns-refresh-show-log-buffer "0.18")
 (defcustom cider-ns-refresh-show-log-buffer nil
